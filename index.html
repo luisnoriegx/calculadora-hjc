@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Funcional</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+        .calculadora {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .pantalla {
+            width: 100%;
+            height: 50px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: right;
+            padding: 10px;
+            font-size: 24px;
+            margin-bottom: 10px;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .botones {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .boton {
+            padding: 20px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .boton:hover {
+            background-color: #0056b3;
+        }
+        .boton-operador {
+            background-color: #28a745;
+        }
+        .boton-operador:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculadora">
+        <input type="text" class="pantalla" id="resultado" disabled>
+        <div class="botones">
+            <button class="boton" onclick="agregarValor('7')">7</button>
+            <button class="boton" onclick="agregarValor('8')">8</button>
+            <button class="boton" onclick="agregarValor('9')">9</button>
+            <button class="boton-operador" onclick="agregarValor('/')">/</button>
+            <button class="boton" onclick="agregarValor('4')">4</button>
+            <button class="boton" onclick="agregarValor('5')">5</button>
+            <button class="boton" onclick="agregarValor('6')">6</button>
+            <button class="boton-operador" onclick="agregarValor('*')">*</button>
+            <button class="boton" onclick="agregarValor('1')">1</button>
+            <button class="boton" onclick="agregarValor('2')">2</button>
+            <button class="boton" onclick="agregarValor('3')">3</button>
+            <button class="boton-operador" onclick="agregarValor('-')">-</button>
+            <button class="boton" onclick="agregarValor('0')">0</button>
+            <button class="boton" onclick="calcular()">=</button>
+            <button class="boton" onclick="limpiar()">C</button>
+            <button class="boton-operador" onclick="agregarValor('+')">+</button>
+        </div>
+    </div>
+
+    <script>
+        function agregarValor(valor) {
+            const pantalla = document.getElementById('resultado');
+            pantalla.value += valor;
+        }
+
+        function calcular() {
+            const pantalla = document.getElementById('resultado');
+            try {
+                // Usar eval() con precaución
+                pantalla.value = eval(pantalla.value);
+            } catch {
+                pantalla.value = 'Error';
+            }
+        }
+
+        function limpiar() {
+            document.getElementById('resultado').value = '';
+        }
+    </script>
+</body>
+</html>
